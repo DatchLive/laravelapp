@@ -35,3 +35,4 @@ EOF;
 //     return view('hello.index');
 // });
 Route::get('hello',[HelloController::class, 'index']);
+Route::post('hello',[HelloController::class, 'post']);

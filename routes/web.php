@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController;
+use App\Http\Middleware\HelloMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +32,9 @@ $html = <<<EOF
 </html>
 EOF;
 
-// Route::get('hello', function() {
-//     return view('hello.index');
-// });
-Route::get('hello',[HelloController::class, 'index']);
+Route::get('hello', function() {
+    return view('hello.index');
+});
+// Route::get('hello',[HelloController::class, 'index']);
 Route::post('hello',[HelloController::class, 'post']);
+Route::get('hello',[HelloController::class,'index'])->middleware('helo');

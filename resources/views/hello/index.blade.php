@@ -15,7 +15,24 @@
   <form action="/hello" method="post">
     <table>
       @csrf
-      @error('name')
+      @if ($errors->has('msg'))
+        <tr>
+          <th>ERROR</th>
+          <td>{{$error->first('msg')}}</td>
+        </tr>
+        @endif
+        <tr>
+          <th>Message</th>
+          <td><input type="text" name="msg" value="{{old('msg')}}"></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><input type="submit" value="send"></td>
+        </tr>
+      </table>
+    </form>
+@endsection
+      {{-- @error('name')
         <tr>
           <th>ERROR</th>
           <td>{{$message}}</td>
@@ -63,10 +80,7 @@
         <td>
           <input type="submit" value="send">
         </td>
-      </tr>
-    </table>
-  </form>
-@endsection
+      </tr> --}}
 
 @section('footer')
 copyright 2019 tuyano.

@@ -9,12 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
-    use HasFactory;
+    protected $guarded = array('id');
 
-    public function getData()
-    {
-      return $this->id . ': ' . $this->name . ' (' . $this->age . ')';
-    }
+
 
     public function scopeNameEqual($query, $str)
     {
@@ -35,5 +32,16 @@ class Person extends Model
     {
      parent::boot();
      static::addGlobalScope(new ScopePerson);
+    }
+
+    public static $rules = array(
+      'name' => 'required',
+      'mail' => 'email',
+      'age' => 'integer|min:0|max:150',
+    );
+
+    public function getData()
+    {
+      return $this->id . ': ' . $this->name . ' (' . $this->age . ')';
     }
 }

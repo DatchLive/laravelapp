@@ -49,3 +49,7 @@ Route::get('hello/show',[HelloController::class,'show']);
 Route::get('person', [PersonController::class, 'index']);
 Route::get('person/find', [PersonController::class, 'find']);
 Route::get('person/find', [PersonController::class, 'search']);
+Route::get('person/edit', [PersonController::class, 'edit']);
+Route::post('person/edit', [PersonController::class, 'update']);
+Route::get('person/del', [PersonController::class, 'delete']);
+Route::post('person/del', [PersonController::class, 'remove']);

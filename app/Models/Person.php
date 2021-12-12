@@ -11,8 +11,6 @@ class Person extends Model
 {
     protected $guarded = array('id');
 
-
-
     public function scopeNameEqual($query, $str)
     {
       return $query->where('name', $str);
@@ -43,5 +41,10 @@ class Person extends Model
     public function getData()
     {
       return $this->id . ': ' . $this->name . ' (' . $this->age . ')';
+    }
+
+    public function boards()
+    {
+      return $this->hasMany('App\Models\Board');
     }
 }

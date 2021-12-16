@@ -1,5 +1,24 @@
 @extends('layouts.helloapp')
-
+<style>
+  .pagenation {
+    font: size 10px;
+  }
+  .pagenation li {
+    display: inline-block;
+  }
+  tr th a:link {
+    color: white;
+  }
+  tr th a:visited {
+    color: white;
+  }
+  tr th a:hover {
+    color: white;
+  }
+  tr th a:active {
+    color: white;
+  }
+</style>
 @section('title', 'Index')
 
 @section('menubar')
@@ -8,66 +27,22 @@
 @endsection
 
 @section('content')
-<table>
-  <tr><th>Name</th><th>Mail</th><th>Age</th></tr>
-  @foreach ($items as $item)
+  <table>
     <tr>
-      <td>{{$item->name}}</td>
-      <td>{{$item->mail}}</td>
-      <td>{{$item->age}}</td>
+      <th><a href="/hello?sort=name">name</a></th>
+      <th><a href="/hello?sort=mail">mail</a></th>
+      <th><a href="/hello?sort=age">mail</a></th>
     </tr>
-  @endforeach
+    @foreach ($items as $item)
+      <tr>
+        <td>{{$item->name}}</td>
+        <td>{{$item->mail}}</td>
+        <td>{{$item->age}}</td>
+      </tr>
+    @endforeach
   </table>
+  {{$items->appends(['sort' => $sort])->links()}}
 @endsection
-      {{-- @error('name')
-        <tr>
-          <th>ERROR</th>
-          <td>{{$message}}</td>
-        </tr>
-      @enderror
-      <tr>
-        <th>
-          name:
-        </th>
-        <td>
-          <input type="text" name="name" value="{{old('name')}}">
-        </td>
-      </tr>
-      @error('mail')
-        <tr>
-          <th>ERROR</th>
-          <td>{{$message}}</td>
-        </tr>
-      @enderror
-      <tr>
-        <th>
-          mail:
-        </th>
-        <td>
-          <input type="text" name="mail" value="{{old('mail')}}" >
-        </td>
-      </tr>
-      @error('age')
-      <tr>
-        <th>ERROR</th>
-        <td>{{$message}}</td>
-      </tr>
-      @enderror
-      <tr>
-        <th>
-          age:
-        </th>
-        <td>
-          <input type="text" name="age" value="{{old('age')}}" >
-        </td>
-      </tr>
-      <tr>
-        <th>
-        </th>
-        <td>
-          <input type="submit" value="send">
-        </td>
-      </tr> --}}
 
 @section('footer')
 copyright 2019 tuyano.

@@ -36,9 +36,9 @@ EOF;
 Route::get('hello', function() {
     return view('hello.index');
 });
-// Route::get('hello',[HelloController::class, 'index']);
 Route::post('hello',[HelloController::class, 'post']);
-Route::get('hello',[HelloController::class,'index']);
+Route::get('hello',[HelloController::class,'index'])
+->middleware('auth');
 Route::get('hello/add',[HelloController::class,'add']);
 Route::post('hello/add',[HelloController::class,'create']);
 Route::get('hello/edit',[HelloController::class,'edit']);
@@ -63,3 +63,8 @@ Route::resource('rest', 'App\Http\Controllers\RestappController');
 Route::get('hello/rest', 'App\Http\Controllers\HelloController@rest');
 Route::get('hello/session', 'App\Http\Controllers\HelloController@ses_get');
 Route::post('hello/session', 'App\Http\Controllers\HelloController@ses_put');
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('hello/auth', 'App\Http\Controllers\HelloController@getAuth');
+Route::post('hello/auth', 'App\Http\Controllers\HelloController@postAuth');
